@@ -1,9 +1,5 @@
 {
-  "extends": "@intune/typescript-config",
-  "compilerOptions": {
-    "outDir": "./dist",
-    "baseUrl": "."
-  },
+  "extends": "./tsconfig.json",
   "exclude": [
     "node_modules",
     "test",
