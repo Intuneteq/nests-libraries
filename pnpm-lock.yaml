@@ -23,6 +23,9 @@ importers:
 
   apps/server:
     dependencies:
+      '@intune/nestjs-mail':
+        specifier: workspace:*
+        version: link:../../packages/mail
       '@nestjs/common':
         specifier: ^11.0.1
         version: 11.1.17(reflect-metadata@0.2.2)(rxjs@7.8.2)
@@ -45,6 +48,9 @@ importers:
       '@eslint/js':
         specifier: ^9.18.0
         version: 9.39.1
+      '@intune/typescript-config':
+        specifier: workspace:*
+        version: link:../../packages/typescript-config
       '@nestjs/cli':
         specifier: ^11.0.0
         version: 11.0.17(@types/node@24.12.0)
@@ -165,6 +171,9 @@ importers:
       form-data:
         specifier: ^4.0.5
         version: 4.0.5
+      handlebars:
+        specifier: ^4.7.9
+        version: 4.7.9
       mailgun.js:
         specifier: ^12.7.1
         version: 12.7.1

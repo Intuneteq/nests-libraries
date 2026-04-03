@@ -30,7 +30,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsc -p tsconfig.build.json", 
+    "build": "tsc -p tsconfig.build.json",
     "dev": "tsc -p tsconfig.build.json --watch",
     "test": "jest",
     "lint": "eslint ."
@@ -40,6 +40,7 @@
     "@nestjs/config": "^4.0.3",
     "axios": "^1.14.0",
     "form-data": "^4.0.5",
+    "handlebars": "^4.7.9",
     "mailgun.js": "^12.7.1",
     "nodemailer": "^8.0.4"
   },
