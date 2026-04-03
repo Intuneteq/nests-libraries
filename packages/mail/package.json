@@ -1,0 +1,55 @@
+{
+  "name": "@intune/nestjs-mail",
+  "version": "1.0.0",
+  "description": "NestJS mail library with support for SES, Mailgun, and Nodemailer",
+  "keywords": [
+    "nestjs",
+    "mail",
+    "mailer",
+    "email",
+    "nodemailer",
+    "ses",
+    "mailgun"
+  ],
+  "author": "Tobi Olanitori <tobiolanitori@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourorg/your-monorepo.git",
+    "directory": "packages/mail"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json", 
+    "dev": "tsc -p tsconfig.build.json --watch",
+    "test": "jest",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "@aws-sdk/client-sesv2": "^3.1023.0",
+    "@nestjs/config": "^4.0.3",
+    "axios": "^1.14.0",
+    "form-data": "^4.0.5",
+    "mailgun.js": "^12.7.1",
+    "nodemailer": "^8.0.4"
+  },
+  "peerDependencies": {
+    "@nestjs/common": "^10.0.0 || ^11.0.0",
+    "@nestjs/core": "^10.0.0 || ^11.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.x",
+    "@types/nodemailer": "^7.0.11",
+    "typescript": "^5.x"
+  }
+}
