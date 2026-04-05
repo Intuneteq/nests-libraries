@@ -1,7 +1,5 @@
 import { HttpException } from '@nestjs/common'
 
-import { CONFIG_OPTIONS } from './entities/config'
-import { MAIL_STRATEGY } from './entities/strategies'
 import { MailModuleOptions } from './interface/config.interface'
 import { MailService } from './mail.service'
 import { TestMailable } from './testing/test.mailable'
@@ -40,8 +38,7 @@ describe('MailService', () => {
   const createStrategy = () => ({
     from: baseOptions.from,
     setOptions: jest.fn().mockReturnThis(),
-    send: jest.fn(),
-    sendMessage: jest.fn(),
+    send: jest.fn()
   })
 
   it('throws when the default transporter does not exist', () => {
