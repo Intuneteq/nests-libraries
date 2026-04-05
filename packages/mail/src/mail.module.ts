@@ -5,9 +5,9 @@ import { MailModuleAsyncOptions, MailModuleOptions } from './interface/config.in
 import { CONFIG_OPTIONS } from './entities/config'
 import { MailService } from './mail.service'
 import { MAIL_STRATEGY } from './entities/strategies'
-import { SmtpMailStrategy } from './strategies/smtp.service'
-import { SesMailStrategy } from './strategies/ses.service'
-import { MailgunMailStrategy } from './strategies/mailgun.service'
+import { SmtpMailStrategy } from './strategies/smtp/smtp.service'
+import { SesMailStrategy } from './strategies/ses/ses.service'
+import { MailgunMailStrategy } from './strategies/mailgun/mailgun.service'
 
 @Module({})
 export class MailModule {

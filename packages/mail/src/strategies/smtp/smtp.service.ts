@@ -1,12 +1,12 @@
 import * as nodemailer from 'nodemailer'
 import { HttpException, Inject, Injectable } from '@nestjs/common'
 
-import { type MailModuleOptions, SmtpMailOptions } from '../interface/config.interface'
-import { MailStrategy, MailAddress } from '../interface/service.interface'
+import { type MailModuleOptions, SmtpMailOptions } from '../../interface/config.interface'
+import { MailStrategy, MailAddress } from '../../interface/service.interface'
 
-import { Mailable } from '../mailables/mailable'
-import { CONFIG_OPTIONS } from '../entities/config'
-import { SmtpMessage } from '../interface/messages.interface'
+import { Mailable } from '../../mailables/mailable'
+import { CONFIG_OPTIONS } from '../../entities/config'
+import { SmtpMessage } from '../../interface/messages.interface'
 
 /**
  * Strategy for sending emails via SMTP using Nodemailer.

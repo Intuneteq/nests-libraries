@@ -6,9 +6,9 @@ import { IMailService, MailAddress, MailStrategy } from "./interface/service.int
 import { CONFIG_OPTIONS } from "./entities/config";
 import { MAIL_STRATEGY } from "./entities/strategies";
 
-import { SesMailStrategy } from "./strategies/ses.service";
-import { SmtpMailStrategy } from "./strategies/smtp.service";
-import { MailgunMailStrategy } from "./strategies/mailgun.service";
+import { SesMailStrategy } from "./strategies/ses/ses.service";
+import { SmtpMailStrategy } from "./strategies/smtp/smtp.service";
+import { MailgunMailStrategy } from "./strategies/mailgun/mailgun.service";
 import { Mailable } from "./mailables/mailable";
 
 /**

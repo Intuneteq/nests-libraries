@@ -162,7 +162,7 @@ All strategies implement:
 
 * `send(mail: Mailable)`
 * `queue(mail: Mailable)`
-* `sendMessage(message: MailMessageUnion)`
+* `sendMessage(message)`
 * `setOptions(options: MailClientOptions)`
 
 ---

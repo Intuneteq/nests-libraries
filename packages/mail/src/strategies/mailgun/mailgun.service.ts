@@ -3,12 +3,12 @@ import Mailgun from "mailgun.js";
 import formData from "form-data";
 import { HttpException, Inject, Injectable } from "@nestjs/common";
 
-import { CONFIG_OPTIONS } from "../entities/config";
-import { MailgunMailOptions, type MailModuleOptions } from "../interface/config.interface";
-import { MailAddress, MailStrategy } from "../interface/service.interface";
+import { CONFIG_OPTIONS } from "../../entities/config";
+import { MailgunMailOptions, type MailModuleOptions } from "../../interface/config.interface";
+import { MailAddress, MailStrategy } from "../../interface/service.interface";
 
-import { Mailable } from "../mailables/mailable";
-import { MailGunMessage } from "../interface/messages.interface";
+import { Mailable } from "../../mailables/mailable";
+import { MailGunMessage } from "../../interface/messages.interface";
 
 /**
  * Strategy for sending emails via Mailgun.
@@ -51,27 +51,14 @@ export class MailgunMailStrategy implements MailStrategy {
    * Send a Mailable instance immediately via Mailgun.
    */
   async send(mail: Mailable): Promise<void> {
-    if (!this.mailgun) {
-      throw new HttpException("Mailgun not initialized. Did you forget to call setOptions?", 500);
-    }
-
-    try {
-      const message = mail.getMailGunMessage(this.from);
-      if (Array.isArray(message.attachment) && message.attachment.length > 0) {
-        message.attachment = await this.resolveAttachments(message.attachment);
-      }
-
-      await this.mailgun.messages.create(this.domain, { ...message, template: '' });
-    } catch (error) {
-      throw new HttpException(error.message, 500);
-    }
+    await this.sendMessage(mail.getMailGunMessage(this.from));
   }
 
   /**
    * Send a fully prepared MailGunMessage directly.
    * Intended for use by queue consumers or internal logic.
    */
-  async sendMessage(message: MailGunMessage) {
+  private async sendMessage(message: MailGunMessage) {
     if (!this.mailgun) {
       throw new HttpException("Mailgun not initialized. Did you forget to call setOptions?", 500);
     }
@@ -81,7 +68,7 @@ export class MailgunMailStrategy implements MailStrategy {
         message.attachment = await this.resolveAttachments(message.attachment);
       }
 
-      await this.mailgun.messages.create(this.domain, { ...message, template: '' });
+      await this.mailgun.messages.create(this.domain, { ...message, template: "" });
     } catch (error) {
       throw new HttpException(error.message, 500);
     }

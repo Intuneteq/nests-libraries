@@ -17,9 +17,9 @@ A good pattern is to create one small fake mail class just for tests, then asser
 Test each strategy class in isolation with mocked SDKs/clients.
 
 Files to target:
-- [smtp.service.ts](/Users/tobiolanitori/Documents/projects/nestjs-libraries/packages/mail/src/strategies/smtp.service.ts)
-- [ses.service.ts](/Users/tobiolanitori/Documents/projects/nestjs-libraries/packages/mail/src/strategies/ses.service.ts)
-- [mailgun.service.ts](/Users/tobiolanitori/Documents/projects/nestjs-libraries/packages/mail/src/strategies/mailgun.service.ts)
+- [smtp.service.ts](/Users/tobiolanitori/Documents/projects/nestjs-libraries/packages/mail/src/strategies/smtp/smtp.service.ts)
+- [ses.service.ts](/Users/tobiolanitori/Documents/projects/nestjs-libraries/packages/mail/src/strategies/ses/ses.service.ts)
+- [mailgun.service.ts](/Users/tobiolanitori/Documents/projects/nestjs-libraries/packages/mail/src/strategies/mailgun/mailgun.service.ts)
 
 What to verify:
 - `setOptions()` validates required config
