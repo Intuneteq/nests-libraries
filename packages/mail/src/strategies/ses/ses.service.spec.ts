@@ -17,7 +17,7 @@ jest.mock('@aws-sdk/client-sesv2', () => {
 
 describe('SesMailStrategy', () => {
   const sesClient = SESv2Client as jest.Mock
-  const sendEmailCommand = SendEmailCommand as jest.Mock
+  const sendEmailCommand = SendEmailCommand
   const mailOptions = {
     from: {
       address: 'sender@example.com',
@@ -32,7 +32,7 @@ describe('SesMailStrategy', () => {
   })
 
   it('throws when setOptions receives incomplete config', () => {
-    const strategy = new SesMailStrategy(mailOptions as any)
+    const strategy = new SesMailStrategy(mailOptions)
 
     expect(() =>
       strategy.setOptions({
@@ -48,7 +48,7 @@ describe('SesMailStrategy', () => {
     const send = jest.fn().mockResolvedValue(undefined)
     sesClient.mockImplementation(() => ({ send }))
 
-    const strategy = new SesMailStrategy(mailOptions as any)
+    const strategy = new SesMailStrategy(mailOptions)
     const mail = new TestMailable()
 
     strategy.setOptions({
@@ -72,7 +72,7 @@ describe('SesMailStrategy', () => {
   })
 
   it('throws when send is called before initialization', async () => {
-    const strategy = new SesMailStrategy(mailOptions as any)
+    const strategy = new SesMailStrategy(mailOptions)
 
     await expect(strategy.send(new TestMailable())).rejects.toThrow(new HttpException('SES configuration not set', 500))
   })
@@ -81,7 +81,7 @@ describe('SesMailStrategy', () => {
     const send = jest.fn().mockRejectedValue(new Error('SES failed'))
     sesClient.mockImplementation(() => ({ send }))
 
-    const strategy = new SesMailStrategy(mailOptions as any)
+    const strategy = new SesMailStrategy(mailOptions)
     strategy.setOptions({
       transport: 'ses',
       region: 'eu-west-1',
