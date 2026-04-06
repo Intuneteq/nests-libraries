@@ -1,3 +1,6 @@
-const help = "food"
-
-const foo = () => 0
+export default {
+     test: 'this is a test',
+     testFunction: () => {
+          console.log('This is a test function')
+     }
+}
