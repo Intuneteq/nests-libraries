@@ -11,6 +11,10 @@
     "./node": {
       "types": "./node/index.d.ts",
       "default": "./node/index.js"
+    },
+    "./nest": {
+      "types": "./nest/index.d.ts",
+      "default": "./nest/index.js"
     }
   },
   "devDependencies": {
