@@ -14,7 +14,10 @@ export default defineConfig([
         }
     },
     eslintPluginPrettier,
-    tseslint.configs.recommended,
+    ...tseslint.configs.recommendedTypeChecked.map((config) => ({
+        ...config,
+        files: ["**/*.ts"] // We use TS config only for TS files
+    })),
     {
         rules: {
             "capitalized-comments": ["warn", "always"],

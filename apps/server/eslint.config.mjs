@@ -1,35 +1,41 @@
-// @ts-check
-import eslint from '@eslint/js';
-import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
-import globals from 'globals';
-import tseslint from 'typescript-eslint';
+import js from "@eslint/js"
+import globals from "globals"
+import tseslint from "typescript-eslint"
+import { defineConfig } from "eslint/config"
+import eslintPluginPrettier from "eslint-plugin-prettier/recommended"
 
-export default tseslint.config(
-  {
-    ignores: ['eslint.config.mjs'],
-  },
-  eslint.configs.recommended,
-  ...tseslint.configs.recommendedTypeChecked,
-  eslintPluginPrettierRecommended,
-  {
-    languageOptions: {
-      globals: {
-        ...globals.node,
-        ...globals.jest,
-      },
-      sourceType: 'commonjs',
-      parserOptions: {
-        projectService: true,
-        tsconfigRootDir: import.meta.dirname,
-      },
+export default defineConfig([
+    {
+        files: ["**/*.{js,mjs,cjs,ts,mts,cts}"],
+        plugins: { js, tseslint },
+        extends: ["js/recommended"],
+        languageOptions: {
+            globals: { ...globals.node, ...globals.jest },
+            parserOptions: {
+                projectService: true,
+                tsconfigRootDir: import.meta.dirname
+            }
+        }
     },
-  },
-  {
-    rules: {
-      '@typescript-eslint/no-explicit-any': 'off',
-      '@typescript-eslint/no-floating-promises': 'warn',
-      '@typescript-eslint/no-unsafe-argument': 'warn',
-      "prettier/prettier": ["error", { endOfLine: "auto" }],
+    eslintPluginPrettier,
+    ...tseslint.configs.recommendedTypeChecked.map((config) => ({
+        ...config,
+        files: ["**/*.ts"] // We use TS config only for TS files
+    })),
+    {
+        rules: {
+            "capitalized-comments": ["warn", "always"],
+            "no-unused-vars": "error"
+        }
     },
-  },
-);
+    {
+        files: ["**/*.{ts,mts,cts}"],
+        rules: {
+            "no-unused-vars": "off",
+            "@typescript-eslint/no-unused-vars": "error",
+            "@typescript-eslint/no-explicit-any": "error",
+            "@typescript-eslint/no-floating-promises": "warn",
+            "@typescript-eslint/no-unsafe-argument": "warn"
+        }
+    }
+])
