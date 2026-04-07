@@ -1,31 +1,33 @@
 {
-  "name": "eslint-setup",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "build": "tsc",
-    "start": "node dist/server.js",
-    "dev": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/index.ts",
-    "lint": "eslint src/**/*.ts"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "@eslint/js": "^10.0.1",
-    "@intune/typescript-config": "workspace:*",
-    "@intune/eslint-config": "workspace:*",
-    "@types/node": "^25.5.2",
-    "eslint": "^10.2.0",
-    "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-prettier": "^5.2.2",
-    "eslint-plugin-turbo": "^2.9.4",
-    "globals": "^17.4.0",
-    "nodemon": "^3.1.14",
-    "prettier": "3.8.1",
-    "ts-node": "^10.9.2",
-    "typescript": "^6.0.2",
-    "typescript-eslint": "^8.58.0"
-  }
+    "name": "eslint-setup",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "build": "tsc",
+        "start": "node dist/server.js",
+        "dev": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/index.ts",
+        "lint": "eslint src/**/*.ts"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "prettier": "@intune/prettier-config",
+    "devDependencies": {
+        "@eslint/js": "^10.0.1",
+        "@intune/typescript-config": "workspace:*",
+        "@intune/eslint-config": "workspace:*",
+        "@intune/prettier-config": "workspace:*",
+        "@types/node": "^25.5.2",
+        "eslint": "^10.2.0",
+        "eslint-config-prettier": "^10.1.8",
+        "eslint-plugin-prettier": "^5.2.2",
+        "eslint-plugin-turbo": "^2.9.4",
+        "globals": "^17.4.0",
+        "nodemon": "^3.1.14",
+        "prettier": "3.8.1",
+        "ts-node": "^10.9.2",
+        "typescript": "^6.0.2",
+        "typescript-eslint": "^8.58.0"
+    }
 }

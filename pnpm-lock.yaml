@@ -29,6 +29,9 @@ importers:
       '@intune/eslint-config':
         specifier: workspace:*
         version: link:../../packages/eslint-config
+      '@intune/prettier-config':
+        specifier: workspace:*
+        version: link:../../packages/prettier-config
       '@intune/typescript-config':
         specifier: workspace:*
         version: link:../../packages/typescript-config
@@ -99,6 +102,9 @@ importers:
       '@intune/eslint-config':
         specifier: workspace:*
         version: link:../../packages/eslint-config
+      '@intune/prettier-config':
+        specifier: workspace:*
+        version: link:../../packages/prettier-config
       '@intune/typescript-config':
         specifier: workspace:*
         version: link:../../packages/typescript-config
@@ -250,6 +256,12 @@ importers:
       typescript:
         specifier: ^5.x
         version: 5.9.2
+
+  packages/prettier-config:
+    dependencies:
+      prettier:
+        specifier: ^3.8.1
+        version: 3.8.1
 
   packages/typescript-config: {}
 
