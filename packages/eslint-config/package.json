@@ -19,6 +19,10 @@
     "./react": {
       "types": "./react/index.d.ts",
       "default": "./react/index.js"
+    },
+    "./next": {
+      "types": "./next/index.d.ts",
+      "default": "./next/index.js"
     }
   },
   "devDependencies": {
