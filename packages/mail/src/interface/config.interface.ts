@@ -1,6 +1,6 @@
-import { ModuleMetadata } from '@nestjs/common'
+import { InjectionToken, ModuleMetadata, OptionalFactoryDependency } from "@nestjs/common"
 
-import { MailAddress } from './service.interface'
+import { MailAddress } from "./service.interface"
 
 /**
  * Configuration object passed to the MailModule.
@@ -10,66 +10,77 @@ import { MailAddress } from './service.interface'
  * - `default`: The key of the client to be used by default.
  */
 export interface MailModuleOptions {
-  from: MailAddress
-  clients: MailClientsMap
-  default: keyof MailClientsMap
+    from: MailAddress
+    clients: MailClientsMap
+    default: keyof MailClientsMap
 }
 
 /**
  * Map of mail client identifiers to their specific configuration.
  * Example: { primary: SmtpMailOptions, backup: SesMailOptions }
  */
-export type MailClientsMap = Record<string, SmtpMailOptions | SesMailOptions | MailgunMailOptions>
+export type MailClientsMap = Record<
+    string,
+    SmtpMailOptions | SesMailOptions | MailgunMailOptions
+>
 
 /**
  * SMTP client configuration.
  */
 export type SmtpMailOptions = {
-  transport: 'smtp'
-  host: string
-  port: number
-  url?: string
-  encryption?: 'ssl' | 'tls' | 'starttls'
-  auth: {
-    user: string
-    pass: string
-  }
+    transport: "smtp"
+    host: string
+    port: number
+    url?: string
+    encryption?: "ssl" | "tls" | "starttls"
+    auth: {
+        user: string
+        pass: string
+    }
 }
 
 /**
  * AWS SES client configuration.
  */
 export type SesMailOptions = {
-  transport: 'ses'
-  region: string
-  accessKeyId: string
-  secretAccessKey: string
+    transport: "ses"
+    region: string
+    accessKeyId: string
+    secretAccessKey: string
 }
 
 /**
  * Mailgun client configuration.
  */
 export type MailgunMailOptions = {
-  transport: 'mailgun'
-  apiKey: string
-  domain: string
+    transport: "mailgun"
+    apiKey: string
+    domain: string
 }
 
 /**
  * Supported mail transport types.
  */
-export type MailTransporter = 'smtp' | 'ses' | 'mailgun'
+export type MailTransporter = "smtp" | "ses" | "mailgun"
 
 /**
  * Union type of all possible mail client configurations.
  */
-export type MailClientOptions = SmtpMailOptions | SesMailOptions | MailgunMailOptions
+export type MailClientOptions =
+    | SmtpMailOptions
+    | SesMailOptions
+    | MailgunMailOptions
 
 /**
  * Async options for configuring MailModule dynamically.
  * Mirrors the NestJS ModuleAsyncOptions pattern.
  */
-export interface MailModuleAsyncOptions extends Pick<ModuleMetadata, 'imports'> {
-  useFactory: (...args: any[]) => Promise<MailModuleOptions> | MailModuleOptions
-  inject?: any[]
+export interface MailModuleAsyncOptions extends Pick<
+    ModuleMetadata,
+    "imports"
+> {
+    useFactory: (
+        ...args: unknown[]
+    ) => Promise<MailModuleOptions> | MailModuleOptions
+    inject?: (InjectionToken | OptionalFactoryDependency)[]
 }

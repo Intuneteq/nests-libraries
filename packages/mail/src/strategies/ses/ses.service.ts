@@ -1,12 +1,20 @@
-import { SESv2Client, SendEmailCommand } from "@aws-sdk/client-sesv2";
-import { HttpException, Inject, Injectable, InternalServerErrorException } from "@nestjs/common";
+import { SESv2Client, SendEmailCommand } from "@aws-sdk/client-sesv2"
+import {
+    HttpException,
+    Inject,
+    Injectable,
+    InternalServerErrorException
+} from "@nestjs/common"
 
-import { CONFIG_OPTIONS } from "../../entities/config";
-import { type MailModuleOptions, SesMailOptions } from "../../interface/config.interface";
-import { MailStrategy, MailAddress } from "../../interface/service.interface";
+import { CONFIG_OPTIONS } from "../../entities/config"
+import {
+    type MailModuleOptions,
+    SesMailOptions
+} from "../../interface/config.interface"
+import { MailStrategy, MailAddress } from "../../interface/service.interface"
 
-import { Mailable } from "../../mailables/mailable";
-import { SesMessage } from "../../interface/messages.interface";
+import { Mailable } from "../../mailables/mailable"
+import { SesMessage } from "../../interface/messages.interface"
 
 /**
  * Strategy for sending emails via AWS SES.
@@ -14,53 +22,64 @@ import { SesMessage } from "../../interface/messages.interface";
  */
 @Injectable()
 export class SesMailStrategy implements MailStrategy {
-  private ses: SESv2Client;
-  public from: MailAddress;
+    private ses: SESv2Client
+    public from: MailAddress
 
-  constructor(@Inject(CONFIG_OPTIONS) protected options: MailModuleOptions) {
-    this.from = options.from;
-  }
-
-  /**
-   * Send a fully-prepared SES message object directly.
-   */
-  private async sendMessage(message: SesMessage): Promise<void> {
-    if (!this.ses) {
-      throw new HttpException("SES configuration not set", 500);
+    constructor(@Inject(CONFIG_OPTIONS) protected options: MailModuleOptions) {
+        this.from = options.from
     }
 
-    try {
-      const command = new SendEmailCommand(message);
-      await this.ses.send(command);
-    } catch (error) {
-      throw new InternalServerErrorException(`Failed to send Email: ${error}`);
+    /**
+     * Send a fully-prepared SES message object directly.
+     */
+    private async sendMessage(message: SesMessage): Promise<void> {
+        if (!this.ses) {
+            throw new HttpException("SES configuration not set", 500)
+        }
+
+        try {
+            const command = new SendEmailCommand(message)
+            await this.ses.send(command)
+        } catch (error: unknown) {
+            const message =
+                error instanceof Error
+                    ? error.message
+                    : "Unknown SES send error"
+
+            throw new InternalServerErrorException(
+                `Failed to send Email: ${message}`
+            )
+        }
     }
-  }
 
-  /**
-   * Send a Mailable instance via SES.
-   */
-  async send(mail: Mailable) {
-    await this.sendMessage(mail.getSesMessage(this.from));
-  }
-
-  /**
-   * Configure SES client at runtime.
-   * Must provide accessKeyId, secretAccessKey, and region.
-   */
-  setOptions(options: SesMailOptions): MailStrategy {
-    if (!options.accessKeyId || !options.secretAccessKey || !options.region) {
-      throw new HttpException("Invalid SES configuration", 500);
+    /**
+     * Send a Mailable instance via SES.
+     */
+    async send(mail: Mailable) {
+        await this.sendMessage(mail.getSesMessage(this.from))
     }
 
-    this.ses = new SESv2Client({
-      region: options.region,
-      credentials: {
-        accessKeyId: options.accessKeyId,
-        secretAccessKey: options.secretAccessKey,
-      },
-    });
+    /**
+     * Configure SES client at runtime.
+     * Must provide accessKeyId, secretAccessKey, and region.
+     */
+    setOptions(options: SesMailOptions): MailStrategy {
+        if (
+            !options.accessKeyId ||
+            !options.secretAccessKey ||
+            !options.region
+        ) {
+            throw new HttpException("Invalid SES configuration", 500)
+        }
 
-    return this;
-  }
+        this.ses = new SESv2Client({
+            region: options.region,
+            credentials: {
+                accessKeyId: options.accessKeyId,
+                secretAccessKey: options.secretAccessKey
+            }
+        })
+
+        return this
+    }
 }

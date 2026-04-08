@@ -1,12 +1,12 @@
 {
-    "extends": "@intune/typescript-config/nestjs.json",
-    "compilerOptions": {
-        "outDir": "./dist",
-        "baseUrl": "./",
-        "paths": {
-            "@/*": ["src/*"]
-        }
-    },
-    "include": ["src/**/*", "test/**/*", "*.ts"],
-    "exclude": ["node_modules", "dist", "coverage"]
+  "extends": "@intune/typescript-config/nestjs.json",
+  "compilerOptions": {
+    "rootDir": "./src",
+    "types": ["node", "jest"],
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
 }

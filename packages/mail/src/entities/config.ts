@@ -5,4 +5,4 @@
  * This allows the Mail module (or any other consumer) to inject configuration
  * values without relying on hard-coded imports.
  */
-export const CONFIG_OPTIONS = 'MAIL_CONFIG_OPTIONS'
+export const CONFIG_OPTIONS = "MAIL_CONFIG_OPTIONS"

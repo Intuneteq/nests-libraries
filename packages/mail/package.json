@@ -1,81 +1,86 @@
 {
-  "name": "@intune/nestjs-mail",
-  "version": "1.0.0",
-  "description": "NestJS mail library with support for SES, Mailgun, and Nodemailer",
-  "keywords": [
-    "nestjs",
-    "mail",
-    "mailer",
-    "email",
-    "nodemailer",
-    "ses",
-    "mailgun"
-  ],
-  "author": "Tobi Olanitori <tobiolanitori@gmail.com>",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/yourorg/your-monorepo.git",
-    "directory": "packages/mail"
-  },
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "default": "./dist/index.js"
-    }
-  },
-  "files": [
-    "dist"
-  ],
-  "scripts": {
-    "build": "tsc -p tsconfig.build.json",
-    "dev": "tsc -p tsconfig.build.json --watch",
-    "test": "jest",
-    "test:watch": "jest --watch",
-    "lint": "eslint ."
-  },
-  "dependencies": {
-    "@aws-sdk/client-sesv2": "^3.1023.0",
-    "@nestjs/config": "^4.0.3",
-    "axios": "^1.14.0",
-    "form-data": "^4.0.5",
-    "handlebars": "^4.7.9",
-    "mailgun.js": "^12.7.1",
-    "nodemailer": "^8.0.4"
-  },
-  "peerDependencies": {
-    "@nestjs/common": "^10.0.0 || ^11.0.0",
-    "@nestjs/core": "^10.0.0 || ^11.0.0"
-  },
-  "devDependencies": {
-    "@nestjs/testing": "^11.1.17",
-    "@types/jest": "^30.0.0",
-    "@types/node": "^20.x",
-    "@types/nodemailer": "^7.0.11",
-    "jest": "^30.0.0",
-    "reflect-metadata": "^0.2.2",
-    "ts-jest": "^29.4.9",
-    "typescript": "^5.x"
-  },
-  "jest": {
-    "moduleFileExtensions": [
-      "js",
-      "json",
-      "ts"
+    "name": "@intune/nestjs-mail",
+    "version": "1.0.0",
+    "description": "NestJS mail library with support for SES, Mailgun, and Nodemailer",
+    "keywords": [
+        "nestjs",
+        "mail",
+        "mailer",
+        "email",
+        "nodemailer",
+        "ses",
+        "mailgun"
     ],
-    "rootDir": ".",
-    "testRegex": "src/.*\\.spec\\.ts$",
-    "transform": {
-      "^.+\\.(t|j)s$": "ts-jest"
+    "author": "Tobi Olanitori <tobiolanitori@gmail.com>",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/yourorg/your-monorepo.git",
+        "directory": "packages/mail"
     },
-    "collectCoverageFrom": [
-      "src/**/*.(t|j)s",
-      "!src/**/*.spec.ts",
-      "!src/testing/**"
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "prettier": "@intune/prettier-config",
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "default": "./dist/index.js"
+        }
+    },
+    "files": [
+        "dist"
     ],
-    "coverageDirectory": "./coverage",
-    "testEnvironment": "node"
-  }
+    "scripts": {
+        "build": "tsc -p tsconfig.build.json",
+        "dev": "tsc -p tsconfig.build.json --watch",
+        "test": "jest",
+        "test:watch": "jest --watch",
+        "lint": "eslint .",
+        "lint:fix": "eslint . --fix"
+    },
+    "dependencies": {
+        "@aws-sdk/client-sesv2": "^3.1023.0",
+        "@nestjs/config": "^4.0.3",
+        "axios": "^1.14.0",
+        "form-data": "^4.0.5",
+        "handlebars": "^4.7.9",
+        "mailgun.js": "^12.7.1",
+        "nodemailer": "^8.0.4"
+    },
+    "peerDependencies": {
+        "@nestjs/common": "^10.0.0 || ^11.0.0",
+        "@nestjs/core": "^10.0.0 || ^11.0.0"
+    },
+    "devDependencies": {
+        "@intune/eslint-config": "workspace:*",
+        "@intune/typescript-config": "workspace:*",
+        "@intune/prettier-config": "workspace:*",
+        "@nestjs/testing": "^11.1.17",
+        "@types/jest": "^30.0.0",
+        "@types/node": "^20.x",
+        "@types/nodemailer": "^7.0.11",
+        "jest": "^30.0.0",
+        "reflect-metadata": "^0.2.2",
+        "ts-jest": "^29.4.9",
+        "typescript": "^6.0.2"
+    },
+    "jest": {
+        "moduleFileExtensions": [
+            "js",
+            "json",
+            "ts"
+        ],
+        "rootDir": ".",
+        "testRegex": "src/.*\\.spec\\.ts$",
+        "transform": {
+            "^.+\\.(t|j)s$": "ts-jest"
+        },
+        "collectCoverageFrom": [
+            "src/**/*.(t|j)s",
+            "!src/**/*.spec.ts",
+            "!src/testing/**"
+        ],
+        "coverageDirectory": "./coverage",
+        "testEnvironment": "node"
+    }
 }

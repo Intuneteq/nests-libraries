@@ -1,4 +1,4 @@
-// src/services/mail/entities/strategies.ts
+// Src/services/mail/entities/strategies.ts
 
 /**
  * Named injection tokens for supported mail delivery strategies.
@@ -12,7 +12,7 @@
  *  - MAIL_STRATEGY.mailgun -> Injects a Mailgun-based mail service
  */
 export const MAIL_STRATEGY = {
-  smtp: 'SMTP_MAIL_SERVICE',
-  ses: 'SES_MAIL_SERVICE',
-  mailgun: 'MAILGUN_MAIL_SERVICE'
+    smtp: "SMTP_MAIL_SERVICE",
+    ses: "SES_MAIL_SERVICE",
+    mailgun: "MAILGUN_MAIL_SERVICE"
 }

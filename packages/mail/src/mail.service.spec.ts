@@ -1,95 +1,142 @@
-import { HttpException } from '@nestjs/common'
+import { HttpException } from "@nestjs/common"
 
-import { MailModuleOptions } from './interface/config.interface'
-import { MailService } from './mail.service'
-import { TestMailable } from './testing/test.mailable'
+import { MailModuleOptions } from "./interface/config.interface"
+import { MailService } from "./mail.service"
+import { TestMailable } from "./testing/test.mailable"
+import { MailStrategy } from "./interface/service.interface"
+import { SesMailStrategy } from "./strategies/ses/ses.service"
+import { SmtpMailStrategy } from "./strategies/smtp/smtp.service"
+import { MailgunMailStrategy } from "./strategies/mailgun/mailgun.service"
 
-describe('MailService', () => {
-  const baseOptions: MailModuleOptions = {
-    from: {
-      address: 'sender@example.com',
-      name: 'Sender Name',
-    },
-    default: 'primary',
-    clients: {
-      primary: {
-        transport: 'smtp',
-        host: 'smtp.example.com',
-        port: 587,
-        auth: {
-          user: 'user',
-          pass: 'pass',
+type MockMailStrategy = jest.Mocked<MailStrategy>
+
+const asSesStrategy = (strategy: MockMailStrategy): SesMailStrategy =>
+    strategy as unknown as SesMailStrategy
+
+const asMailgunStrategy = (strategy: MockMailStrategy): MailgunMailStrategy =>
+    strategy as unknown as MailgunMailStrategy
+
+const asSmtpStrategy = (strategy: MockMailStrategy): SmtpMailStrategy =>
+    strategy as unknown as SmtpMailStrategy
+
+describe("MailService", () => {
+    const baseOptions: MailModuleOptions = {
+        from: {
+            address: "sender@example.com",
+            name: "Sender Name"
         },
-      },
-      transactional: {
-        transport: 'ses',
-        region: 'eu-west-1',
-        accessKeyId: 'key',
-        secretAccessKey: 'secret',
-      },
-      marketing: {
-        transport: 'mailgun',
-        apiKey: 'api-key',
-        domain: 'mg.example.com',
-      },
-    },
-  }
+        default: "primary",
+        clients: {
+            primary: {
+                transport: "smtp",
+                host: "smtp.example.com",
+                port: 587,
+                auth: {
+                    user: "user",
+                    pass: "pass"
+                }
+            },
+            transactional: {
+                transport: "ses",
+                region: "eu-west-1",
+                accessKeyId: "key",
+                secretAccessKey: "secret"
+            },
+            marketing: {
+                transport: "mailgun",
+                apiKey: "api-key",
+                domain: "mg.example.com"
+            }
+        }
+    }
 
-  const createStrategy = () => ({
-    from: baseOptions.from,
-    setOptions: jest.fn().mockReturnThis(),
-    send: jest.fn()
-  })
+    const createStrategy = (): MockMailStrategy => {
+        const strategy = {
+            from: baseOptions.from,
+            setOptions: jest.fn(),
+            send: jest.fn<Promise<void>, [TestMailable]>()
+        } as MockMailStrategy
 
-  it('throws when the default transporter does not exist', () => {
-    const smtpStrategy = createStrategy()
-    const sesStrategy = createStrategy()
-    const mailgunStrategy = createStrategy()
+        strategy.setOptions.mockReturnValue(strategy)
 
-    expect(
-      () =>
-        new MailService(
-          {
-            ...baseOptions,
-            default: 'missing',
-          },
-          sesStrategy as any,
-          mailgunStrategy as any,
-          smtpStrategy as any,
-        ),
-    ).toThrow(new HttpException('Invalid default transporter: missing', 500))
-  })
+        return strategy
+    }
 
-  it('returns the correct strategy for a configured client', () => {
-    const smtpStrategy = createStrategy()
-    const sesStrategy = createStrategy()
-    const mailgunStrategy = createStrategy()
-    const service = new MailService(baseOptions, sesStrategy as any, mailgunStrategy as any, smtpStrategy as any)
+    it("throws when the default transporter does not exist", () => {
+        const smtpStrategy = createStrategy()
+        const sesStrategy = createStrategy()
+        const mailgunStrategy = createStrategy()
 
-    const transporter = service.getTransporter('marketing')
+        expect(
+            () =>
+                new MailService(
+                    {
+                        ...baseOptions,
+                        default: "missing"
+                    },
+                    asSesStrategy(sesStrategy),
+                    asMailgunStrategy(mailgunStrategy),
+                    asSmtpStrategy(smtpStrategy)
+                )
+        ).toThrow(
+            new HttpException("Invalid default transporter: missing", 500)
+        )
+    })
 
-    expect(mailgunStrategy.setOptions).toHaveBeenCalledWith(baseOptions.clients.marketing)
-    expect(transporter).toBe(mailgunStrategy)
-  })
+    it("returns the correct strategy for a configured client", () => {
+        const smtpStrategy = createStrategy()
+        const sesStrategy = createStrategy()
+        const mailgunStrategy = createStrategy()
+        const service = new MailService(
+            baseOptions,
+            asSesStrategy(sesStrategy),
+            asMailgunStrategy(mailgunStrategy),
+            asSmtpStrategy(smtpStrategy)
+        )
 
-  it('throws when a client is not configured', () => {
-    const service = new MailService(baseOptions, createStrategy() as any, createStrategy() as any, createStrategy() as any)
+        const transporter = service.getTransporter("marketing")
 
-    expect(() => service.getTransporter('missing')).toThrow(new HttpException('Invalid client', 500))
-  })
+        expect(mailgunStrategy.setOptions.mock.calls).toHaveLength(1)
+        expect(mailgunStrategy.setOptions.mock.calls[0]).toEqual([
+            baseOptions.clients.marketing
+        ])
+        expect(transporter).toBe(mailgunStrategy)
+    })
 
-  it('sends with the default transporter', async () => {
-    const smtpStrategy = createStrategy()
-    const sesStrategy = createStrategy()
-    const mailgunStrategy = createStrategy()
-    const service = new MailService(baseOptions, sesStrategy as any, mailgunStrategy as any, smtpStrategy as any)
-    const mail = new TestMailable()
+    it("throws when a client is not configured", () => {
+        const service = new MailService(
+            baseOptions,
+            asSesStrategy(createStrategy()),
+            asMailgunStrategy(createStrategy()),
+            asSmtpStrategy(createStrategy())
+        )
 
-    await service.send(mail)
+        expect(() => service.getTransporter("missing")).toThrow(
+            new HttpException("Invalid client", 500)
+        )
+    })
 
-    expect(smtpStrategy.setOptions).toHaveBeenCalledWith(baseOptions.clients.primary)
-    expect(smtpStrategy.send).toHaveBeenCalledWith(mail)
-    expect(sesStrategy.send).not.toHaveBeenCalled()
-    expect(mailgunStrategy.send).not.toHaveBeenCalled()
-  })
+    it("sends with the default transporter", async () => {
+        const smtpStrategy = createStrategy()
+        const sesStrategy = createStrategy()
+        const mailgunStrategy = createStrategy()
+        const service = new MailService(
+            baseOptions,
+            asSesStrategy(sesStrategy),
+            asMailgunStrategy(mailgunStrategy),
+            asSmtpStrategy(smtpStrategy)
+        )
+        const mail = new TestMailable()
+
+        await service.send(mail)
+
+        expect(smtpStrategy.setOptions.mock.calls).toHaveLength(1)
+        expect(smtpStrategy.setOptions.mock.calls[0]).toEqual([
+            baseOptions.clients.primary
+        ])
+        expect(smtpStrategy.send.mock.calls).toHaveLength(1)
+        expect(smtpStrategy.send.mock.calls[0]).toEqual([mail])
+        expect(sesStrategy.send.mock.calls).toHaveLength(0)
+        expect(mailgunStrategy.send.mock.calls).toHaveLength(0)
+    })
 })

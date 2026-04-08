@@ -1,12 +1,12 @@
-import { Mailable } from '../mailables/mailable'
-import { MailClientOptions } from './config.interface'
+import { Mailable } from "../mailables/mailable"
+import { MailClientOptions } from "./config.interface"
 /**
  * Represents an email address with an optional display name.
  * Example: { address: "john@example.com", name: "John Doe" }
  */
 export interface MailAddress {
-  address: string
-  name: string
+    address: string
+    name: string
 }
 
 /**
@@ -15,8 +15,8 @@ export interface MailAddress {
  * - `send()`: Send a Mailable immediately.
  */
 export interface IMailService {
-  from: MailAddress
-  send(mail: Mailable): Promise<void>
+    from: MailAddress
+    send(mail: Mailable): Promise<void>
 }
 
 /**
@@ -33,7 +33,7 @@ export interface MailStrategy extends IMailService, IMailOptionsConfigurator {}
  * different configurations are needed at runtime.
  */
 export interface IMailOptionsConfigurator {
-  setOptions(options: MailClientOptions): MailStrategy
+    setOptions(options: MailClientOptions): MailStrategy
 }
 
 /**
@@ -41,13 +41,13 @@ export interface IMailOptionsConfigurator {
  * Useful for higher-level logic that doesn’t care about provider details.
  */
 export interface IMailMessageBase {
-  to: string | string[]
-  subject: string
-  text?: string
-  html?: string
-  from?: string
-  attachments?: Array<{
-    filename: string
-    content: Buffer | string
-  }>
+    to: string | string[]
+    subject: string
+    text?: string
+    html?: string
+    from?: string
+    attachments?: Array<{
+        filename: string
+        content: Buffer | string
+    }>
 }
