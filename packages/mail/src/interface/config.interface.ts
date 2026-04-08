@@ -1,4 +1,8 @@
-import { InjectionToken, ModuleMetadata, OptionalFactoryDependency } from "@nestjs/common"
+import {
+    InjectionToken,
+    ModuleMetadata,
+    OptionalFactoryDependency
+} from "@nestjs/common"
 
 import { MailAddress } from "./service.interface"
 
