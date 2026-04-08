@@ -84,7 +84,8 @@ export interface MailModuleAsyncOptions extends Pick<
     "imports"
 > {
     useFactory: (
-        ...args: unknown[]
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        ...args: any[]
     ) => Promise<MailModuleOptions> | MailModuleOptions
     inject?: (InjectionToken | OptionalFactoryDependency)[]
 }
