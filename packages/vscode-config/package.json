@@ -1,0 +1,23 @@
+{
+  "name": "@intune/vscode-config",
+  "version": "1.0.0",
+  "private": false,
+  "type": "module",
+  "description": "Recommended VS Code settings and extensions for @intune projects",
+  "files": [
+    ".vscode/settings.json",
+    ".vscode/extensions.json",
+    "bin/copy.mjs",
+    "README.md"
+  ],
+  "bin": {
+    "intune-vscode-config": "./bin/copy.mjs"
+  },
+  "scripts": {
+    "copy:vscode": "node ./bin/copy.mjs"
+  },
+  "peerDependencies": {
+    "eslint": "^9.0.0",
+    "prettier": "^3.0.0"
+  }
+}
