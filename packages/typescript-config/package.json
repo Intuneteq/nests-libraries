@@ -1,19 +1,20 @@
 {
   "name": "@intune/typescript-config",
-  "version": "0.0.0",
-  "private": true,
+  "version": "0.0.1",
+  "private": false,
   "license": "MIT",
-  "publishConfig": {
-    "access": "public"
-  },
   "files": [
     "base.json",
-    "tsconfig.json"
+    "nextjs.json",
+    "react-library.json"
   ],
   "exports": {
-    ".": "./tsconfig.json",
     "./base.json": "./base.json",
-    "./tsconfig.json": "./tsconfig.json"
+    "./nextjs.json": "./nextjs.json",
+    "./react-library.json": "./react-library.json",
+    "./nestjs.json": "./nestjs.json"
   },
-  "tsconfig": "./tsconfig.json"
+  "dependencies": {
+    "typescript": "^5.9.3"
+  }
 }
