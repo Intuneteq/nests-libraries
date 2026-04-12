@@ -1,3 +1,3 @@
-import config from "@intune/eslint-config/node"
+import config from '@intune/eslint-config/node';
 
-export default config
+export default config;

@@ -2,6 +2,8 @@
   "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
     "declaration": true,
+    "outDir": "./dist",
+    "rootDir": "./src",
     "declarationMap": true,
     "esModuleInterop": true,
     "incremental": false,
@@ -14,6 +16,6 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": true,
-    "target": "ES2022",
+    "target": "ES2022"
   }
 }

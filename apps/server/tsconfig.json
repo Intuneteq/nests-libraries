@@ -1,12 +1,12 @@
 {
   "extends": "@intune/typescript-config/nestjs.json",
   "compilerOptions": {
-    "rootDir": "./src",
+    "rootDir": ".",
     "types": ["node", "jest"],
     "paths": {
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "test/**/*"],
   "exclude": ["node_modules", "dist"]
 }
