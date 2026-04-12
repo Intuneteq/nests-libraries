@@ -33,7 +33,7 @@
     ],
     "scripts": {
         "build": "tsup src/index.ts --format cjs,esm --dts",
-        "dev": "tsup src/index.ts --watch",
+        "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
         "test": "jest",
         "test:watch": "jest --watch",
         "lint": "eslint .",
