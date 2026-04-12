@@ -1,159 +1,72 @@
-# Turborepo starter
+# nestjs-libraries
 
-This Turborepo starter is maintained by the Turborepo core team.
+Shared packages for NestJS and TypeScript projects in the `@intune` workspace.
 
-## Using this example
+## Packages
 
-Run the following command:
+- `@intune/nestjs-mail`: NestJS mail module with SMTP, AWS SES, and Mailgun strategies
+- `@intune/eslint-config`: Reusable flat ESLint configs for Node, NestJS, React, and Next.js projects
+- `@intune/prettier-config`: Shared Prettier defaults
+- `@intune/typescript-config`: Shared `tsconfig` presets for base TypeScript, NestJS, React libraries, and Next.js
+- `@intune/vscode-config`: VS Code settings and extension recommendations, plus a CLI to copy them into a project
 
-```sh
-npx create-turbo@latest
+## Tech Stack
+
+- `pnpm` workspaces
+- Turborepo
+- Changesets
+- TypeScript
+
+## Getting Started
+
+```bash
+pnpm install
 ```
 
-## What's inside?
+## Workspace Commands
 
-This Turborepo includes the following packages/apps:
+Run these from the repository root:
 
-### Apps and Packages
-
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
-
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended):
-
-```sh
-cd my-turborepo
-turbo build
+```bash
+pnpm build
+pnpm dev
+pnpm lint
+pnpm check-types
+pnpm format
 ```
 
-Without global `turbo`, use your package manager:
+Target a single package with a filter:
 
-```sh
-cd my-turborepo
-npx turbo build
-yarn dlx turbo build
-pnpm exec turbo build
+```bash
+pnpm --filter @intune/nestjs-mail build
+pnpm --filter @intune/eslint-config lint
 ```
 
-You can build a specific package by using a [filter](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters):
+## Releases
 
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed:
+Package publishing is managed with Changesets.
 
-```sh
-turbo build --filter=docs
+```bash
+pnpm publish-packages
 ```
 
-Without global `turbo`:
+That command builds packages in `packages/*` and then runs `changeset publish`.
 
-```sh
-npx turbo build --filter=docs
-yarn exec turbo build --filter=docs
-pnpm exec turbo build --filter=docs
+## Repository Structure
+
+```text
+apps/
+packages/
+  eslint-config/
+  mail/
+  prettier-config/
+  typescript-config/
+  vscode-config/
+.changeset/
 ```
 
-### Develop
+## Notes
 
-To develop all apps and packages, run the following command:
-
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended):
-
-```sh
-cd my-turborepo
-turbo dev
-```
-
-Without global `turbo`, use your package manager:
-
-```sh
-cd my-turborepo
-npx turbo dev
-yarn exec turbo dev
-pnpm exec turbo dev
-```
-
-You can develop a specific package by using a [filter](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters):
-
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed:
-
-```sh
-turbo dev --filter=web
-```
-
-Without global `turbo`:
-
-```sh
-npx turbo dev --filter=web
-yarn exec turbo dev --filter=web
-pnpm exec turbo dev --filter=web
-```
-
-### Remote Caching
-
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
-
-Turborepo can use a technique known as [Remote Caching](https://turborepo.dev/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
-
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended):
-
-```sh
-cd my-turborepo
-turbo login
-```
-
-Without global `turbo`, use your package manager:
-
-```sh
-cd my-turborepo
-npx turbo login
-yarn exec turbo login
-pnpm exec turbo login
-```
-
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed:
-
-```sh
-turbo link
-```
-
-Without global `turbo`:
-
-```sh
-npx turbo link
-yarn exec turbo link
-pnpm exec turbo link
-```
-
-## Useful Links
-
-Learn more about the power of Turborepo:
-
-- [Tasks](https://turborepo.dev/docs/crafting-your-repository/running-tasks)
-- [Caching](https://turborepo.dev/docs/crafting-your-repository/caching)
-- [Remote Caching](https://turborepo.dev/docs/core-concepts/remote-caching)
-- [Filtering](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters)
-- [Configuration Options](https://turborepo.dev/docs/reference/configuration)
-- [CLI Usage](https://turborepo.dev/docs/reference/command-line-reference)
+- Node `>=18` is required.
+- Packages are configured for public release via Changesets.
+- Package-specific usage lives in each package README under `packages/*`.

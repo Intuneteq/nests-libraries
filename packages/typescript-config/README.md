@@ -1,41 +1,50 @@
-# intune/typescript-config
+# @intune/typescript-config
 
-Shared `tsconfig` presets used across Intune repositories.
+Shared `tsconfig` presets used across `@intune` projects.
 
 ## Install
 
 ```bash
-npm install -D intune/typescript-config typescript
+pnpm add -D @intune/typescript-config typescript
 ```
 
-## Available configs
+## Available Presets
 
-- `intune/typescript-config/base.json`
-- `intune/typescript-config/nextjs.json`
-- `intune/typescript-config/react-library.json`
+- `@intune/typescript-config/base.json`
+- `@intune/typescript-config/nestjs.json`
+- `@intune/typescript-config/react-library.json`
+- `@intune/typescript-config/nextjs.json`
 
 ## Usage
 
-### Next.js app (`tsconfig.json`)
+### Base TypeScript project
 
 ```json
 {
-  "extends": "intune/typescript-config/nextjs.json"
+    "extends": "@intune/typescript-config/base.json"
 }
 ```
 
-### React library (`tsconfig.json`)
+### NestJS project
 
 ```json
 {
-  "extends": "intune/typescript-config/react-library.json"
+    "extends": "@intune/typescript-config/nestjs.json"
 }
 ```
 
-### Generic TypeScript project (`tsconfig.json`)
+### React library
 
 ```json
 {
-  "extends": "intune/typescript-config/base.json"
+    "extends": "@intune/typescript-config/react-library.json"
+}
+```
+
+### Next.js app
+
+```json
+{
+    "extends": "@intune/typescript-config/nextjs.json"
 }
 ```
