@@ -13,7 +13,7 @@ export default defineConfig([
   ...tseslint.configs.recommended,
   ...tseslint.configs.recommendedTypeChecked,  
 
-  reactHooks.configs['recommended-latest'],
+  reactHooks.configs.flat.recommended,
   reactRefresh.configs.recommended,
   
   eslintPluginPrettierRecommended,
