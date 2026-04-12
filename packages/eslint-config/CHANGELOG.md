@@ -1,5 +1,14 @@
 # @intune/eslint-config
 
+## 1.1.1
+
+### Patch Changes
+
+- 67fc462: Improve package documentation by adding and refreshing README files.
+  - add README documentation for `@intune/eslint-config` and `@intune/prettier-config`
+  - refresh README content for `@intune/typescript-config`, `@intune/vscode-config`, and `@intune/nestjs-mail`
+  - align package docs with current package names, exports, and usage examples
+
 ## 1.1.0
 
 ### Minor Changes

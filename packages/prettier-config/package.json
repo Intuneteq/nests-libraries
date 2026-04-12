@@ -1,6 +1,6 @@
 {
   "name": "@intune/prettier-config",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": false,
   "type": "module",
   "description": "Shared Prettier configuration for the organization",
