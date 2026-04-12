@@ -1,12 +1,11 @@
 {
-  "extends": "./tsconfig.json",
-  "compilerOptions": {
-    "outDir": "dist",
-    "rootDir": ".",
-    "declaration": true,
-    "declarationMap": true,
-    "tsBuildInfoFile": "dist/tsconfig.build.tsbuildinfo"
-  },
-  "include": ["index.ts", "src/**/*"],
-  "exclude": ["node_modules", "dist"]
+    "extends": "./tsconfig.json",
+    "compilerOptions": {
+        "outDir": "dist",
+        "rootDir": ".",
+        "declaration": true,
+        "declarationMap": true,
+    },
+    "include": ["index.ts", "src/**/*"],
+    "exclude": ["node_modules", "dist"]
 }

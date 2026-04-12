@@ -16,11 +16,7 @@
   "[javascriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "eslint.validate": [
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact"
-  ],
-  "prettier.prettierPath": "./node_modules/prettier"
+  "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
+  "prettier.prettierPath": "./node_modules/prettier",
+  "js/ts.tsdk.path": "node_modules/typescript/lib"
 }
