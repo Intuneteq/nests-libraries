@@ -1,5 +1,11 @@
 # @intune/nestjs-mail
 
+## 1.0.2
+
+### Patch Changes
+
+- d4bcc8e: added licensing
+
 ## 1.0.1
 
 ### Patch Changes

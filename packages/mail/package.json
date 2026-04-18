@@ -1,6 +1,6 @@
 {
     "name": "@intune/nestjs-mail",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "NestJS mail library with support for SES, Mailgun, and Nodemailer",
     "keywords": [
         "nestjs",

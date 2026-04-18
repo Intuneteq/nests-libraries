@@ -1,6 +1,6 @@
 {
   "name": "@intune/vscode-config",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Shared VS Code settings for Intune projects",
   "type": "module",
   "license": "MIT",
