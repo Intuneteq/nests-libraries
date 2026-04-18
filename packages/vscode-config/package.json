@@ -3,6 +3,7 @@
   "version": "1.0.1",
   "description": "Shared VS Code settings for Intune projects",
   "type": "module",
+  "license": "MIT",
   "bin": {
     "intune-vscode-config": "./bin/copy.mjs"
   },

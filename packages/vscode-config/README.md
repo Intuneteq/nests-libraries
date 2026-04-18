@@ -26,3 +26,6 @@ pnpm exec intune-vscode-config
 This copies the packaged `.vscode/settings.json` and `.vscode/extensions.json` into the current working directory.
 
 After copying the files, reload VS Code so the settings are picked up.
+
+## License
+   MIT © Tobi Olanitori

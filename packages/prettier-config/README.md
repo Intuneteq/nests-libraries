@@ -24,3 +24,6 @@ export default config
 - `singleQuote: false`
 - `semi: false`
 - `trailingComma: "none"`
+
+## License
+   MIT © Tobi Olanitori
