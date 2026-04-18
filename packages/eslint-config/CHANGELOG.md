@@ -1,5 +1,11 @@
 # @intune/eslint-config
 
+## 1.1.2
+
+### Patch Changes
+
+- d4bcc8e: added licensing
+
 ## 1.1.1
 
 ### Patch Changes

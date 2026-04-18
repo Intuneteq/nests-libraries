@@ -1,5 +1,12 @@
 # server
 
+## 0.0.4
+
+### Patch Changes
+
+- Updated dependencies [d4bcc8e]
+    - @intune/nestjs-mail@1.0.2
+
 ## 0.0.3
 
 ### Patch Changes
