@@ -59,3 +59,6 @@ export default config
 - Prettier integration through `eslint-plugin-prettier`
 - Framework-specific defaults for React and Next.js
 - Common ignores for build output directories
+
+## License
+   MIT © Tobi Olanitori

@@ -4,6 +4,7 @@
   "private": false,
   "type": "module",
   "description": "Shared Prettier configuration for the organization",
+  "license": "MIT",
   "files": [
     "index.js",
     "index.d.ts"

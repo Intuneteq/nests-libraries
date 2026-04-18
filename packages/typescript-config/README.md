@@ -48,3 +48,6 @@ pnpm add -D @intune/typescript-config typescript
     "extends": "@intune/typescript-config/nextjs.json"
 }
 ```
+
+## License
+   MIT © Tobi Olanitori

@@ -222,3 +222,6 @@ pnpm --filter @intune/nestjs-mail build
 pnpm --filter @intune/nestjs-mail test
 pnpm --filter @intune/nestjs-mail lint
 ```
+
+## License
+   MIT © Tobi Olanitori
