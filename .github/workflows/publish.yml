@@ -36,7 +36,7 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Create Release PR
+      - name: Create Release PR or Publish or Publish
         id: changesets
         uses: changesets/action@v1
         with:
@@ -45,7 +45,3 @@ jobs:
           title: "chore(release): version packages"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      
-      - name: Publish packages
-        if: steps.changesets.outputs.hasChangesets == 'false'
-        run: pnpm run publish-packages
