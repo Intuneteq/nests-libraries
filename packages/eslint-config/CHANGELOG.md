@@ -1,5 +1,11 @@
 # @intune/eslint-config
 
+## 1.2.0
+
+### Minor Changes
+
+- 732f291: Update shared ESLint presets and add an 80-character Prettier print width.
+
 ## 1.1.2
 
 ### Patch Changes
