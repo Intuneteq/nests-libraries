@@ -16,5 +16,10 @@
   },
   "dependencies": {
     "typescript": "^6.0.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Intuneteq/nests-libraries",
+    "directory": "packages/typescript-config"
   }
 }
