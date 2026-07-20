@@ -3,7 +3,8 @@ const config = {
   tabWidth: 4,
   singleQuote: false,
   semi: false,
-  trailingComma: "none"
+  trailingComma: "none",
+  printWidth: 80
 };
 
 export default config;

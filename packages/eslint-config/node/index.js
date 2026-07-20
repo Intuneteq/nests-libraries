@@ -7,7 +7,6 @@ import eslintPluginPrettier from "eslint-plugin-prettier/recommended";
 
 export default defineConfig([
   globalIgnores(["dist/**"]),
-
   {
     files: ["**/*.{js,mjs,cjs,ts,mts,cts}"],
     plugins: { js },
@@ -27,7 +26,19 @@ export default defineConfig([
   {
     rules: {
       "capitalized-comments": ["warn", "always"],
+    },
+  },
+  {
+    files: ["**/*.{js,mjs,cjs}"],
+    rules: {
       "no-unused-vars": "error",
+    },
+  },
+  {
+    files: ["**/*.{ts,mts,cts}"],
+    rules: {
+      "no-unused-vars": "off",
+      "@typescript-eslint/no-unused-vars": "error",
     },
   },
   {
