@@ -17,5 +17,10 @@
   },
   "peerDependencies": {
     "prettier": "^3.8.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Intuneteq/nests-libraries",
+    "directory": "packages/prettier-config"
   }
 }

@@ -13,5 +13,10 @@
   ],
   "scripts": {
     "copy:vscode": "node ./bin/copy.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Intuneteq/nests-libraries",
+    "directory": "packages/vscode-config"
   }
 }
