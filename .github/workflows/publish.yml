@@ -36,7 +36,7 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Create Release PR or Publish or Publish
+      - name: Create Release PR or Publish
         id: changesets
         uses: changesets/action@v1
         with:
