@@ -1,5 +1,11 @@
 # @intune/typescript-config
 
+## 1.1.1
+
+### Patch Changes
+
+- 6f9ca19: exposed nestjs
+
 ## 1.1.0
 
 ### Minor Changes
