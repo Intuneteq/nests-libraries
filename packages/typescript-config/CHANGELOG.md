@@ -1,5 +1,11 @@
 # @intune/typescript-config
 
+## 1.1.0
+
+### Minor Changes
+
+- b8999b1: added nestjs configurations
+
 ## 1.0.2
 
 ### Patch Changes
