@@ -17,7 +17,8 @@
 
     "strictPropertyInitialization": false,
     "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "forceConsistentCasingInFileNames": true
   },
   "include": ["src/**/*", "test/**/*"],
   "exclude": ["node_modules", "dist", "coverage"]
